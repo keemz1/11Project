@@ -6,7 +6,6 @@
     OnClientClick="myfunction(); return false;" ShowFooter="True" AutoGenerateColumns="False">
     <Columns>
         <asp:BoundField DataField="ProductId" HeaderText="ProductId" ItemStyle-CssClass="hiddencol" HeaderStyle-CssClass="hiddencol" SortExpression="ProductId" ReadOnly="True" />
-        <asp:BoundField DataField="ProductCode" HeaderText="ProductCode" SortExpression="ProductCode" />
         <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
         <asp:BoundField DataField="ShortDescription" HeaderText="ShortDescription" SortExpression="ShortDescription" />
         <asp:BoundField DataField="UnitPrice" HeaderText="UnitPrice" SortExpression="UnitPrice" />
@@ -14,18 +13,9 @@
         <asp:BoundField DataField="ImageFile" HeaderText="ImageFile" SortExpression="ImageFile" />
         <asp:BoundField DataField="InStock" HeaderText="InStock" SortExpression="InStock" />
         <%--<asp:BoundField DataField="ShippingCost" HeaderText="ShippingCost" SortExpression="ShippingCost" />--%>
-        <asp:TemplateField HeaderText="Image">
-            <EditItemTemplate>
-                <asp:TextBox ID="TextBox1" runat="server"
-                    Text='<%# Bind("ImageFile") %>'></asp:TextBox>
-            </EditItemTemplate>
-            <ItemTemplate>
-                <asp:Image ID="imgProduct" runat="server" ImageUrl='<%# Eval("ImageFile") %>' Width="100px" Height="100px" />
-            </ItemTemplate>
-        </asp:TemplateField>
     </Columns>
 </asp:GridView>
-<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookRepo %>" SelectCommand="SELECT * FROM [Product]" DeleteCommand="DELETE FROM [Product] WHERE [ProductId] = @ProductId" InsertCommand="INSERT INTO [Product] ([ProductId], [ProductCode], [Name], [ShortDescription], [LongDescription], [UnitPrice], [ImageFile], [InStock]) VALUES (@ProductId, @ProductCode, @Name, @ShortDescription, @LongDescription, @UnitPrice, @ImageFile, @InStock)" UpdateCommand="UPDATE [Product] SET [ProductCode] = @ProductCode, [Name] = @Name, [ShortDescription] = @ShortDescription, [LongDescription] = @LongDescription, [UnitPrice] = @UnitPrice, [ImageFile] = @ImageFile, [InStock] = @InStock WHERE [ProductId] = @ProductId">
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:BookRepo %>" SelectCommand="SELECT * FROM [Product]" DeleteCommand="DELETE FROM [Product] WHERE [ProductId] = @ProductId" InsertCommand="INSERT INTO [Product] ([ProductId], [Name], [ShortDescription], [UnitPrice], [ImageFile], [InStock]) VALUES (@ProductId, @Name, @ShortDescription, @UnitPrice, @ImageFile, @InStock)" UpdateCommand="UPDATE [Product] SET [Name] = @Name, [ShortDescription] = @ShortDescription, [UnitPrice] = @UnitPrice, [ImageFile] = @ImageFile, [InStock] = @InStock WHERE [ProductId] = @ProductId">
     <DeleteParameters>
         <asp:Parameter Name="ProductId" Type="Object" />
     </DeleteParameters>

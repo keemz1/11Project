@@ -178,10 +178,11 @@ productGrid{
     background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
-
-/*--------------Footer--------------*/
-.site-footer {
+.carousel-item img {
+    margin:auto;
+}
+    /*--------------Footer--------------*/
+    .site-footer {
     background-color: #26272b;
     padding: 45px 0 20px;
     font-size: 15px;

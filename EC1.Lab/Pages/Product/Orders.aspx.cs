@@ -13,5 +13,10 @@ namespace EC1.Lab.Pages.Product
         {
 
         }
+
+        protected void btnGoToCart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Pages/Product/Cart.aspx");
+        }
     }
 }

@@ -5,6 +5,7 @@ using EC1.Lab.Pages.Product.Sub_Pages;
 using EC1.Lab.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.Data.OleDb;
@@ -21,6 +22,7 @@ namespace EC1.Lab
     {
         UserManager<AppUser> userManager = new UserManager<AppUser>(new UserStore<AppUser>(new ApplicationDbContext()));
         private readonly DbService dbService = new DbService();
+        IAuthenticationManager authenticationManager;
         //public static string ImageID = "";
 
 
@@ -30,6 +32,19 @@ namespace EC1.Lab
             if (!User.Identity.IsAuthenticated)
             {
                 Response.Redirect("/Pages/Account/Login.aspx", true);
+            }
+
+            authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+            if (authenticationManager.User.IsInRole("Admin"))
+            {
+                btnAddToCart.Visible = false;
+                txtQuantity.Visible = false;
+                ListView.Visible = false;
+
+            }
+            if (authenticationManager.User.IsInRole("Customer"))
+            {
+                Grid.Visible = false;
             }
             var t = HttpContext.Current.User;
             var id = Guid.Parse(t.Identity.GetUserId());
@@ -62,25 +77,33 @@ namespace EC1.Lab
 
         protected void AddItem_Click(object sender, EventArgs e)
         {
-            double price = Convert.ToDouble(txtproductPrice.Text);
-            var totalCost = Convert.ToInt32(txtQuantity.Text) * price;
-            var t = HttpContext.Current.User;
-            var id = Guid.Parse(t.Identity.GetUserId());
-
-            using (var context = new ApplicationDbContext())
+            try
             {
-                context.Cart.Add(new Cart
+                double price = Convert.ToDouble(txtproductPrice.Text);
+                var totalCost = Convert.ToInt32(txtQuantity.Text) * price;
+                var t = HttpContext.Current.User;
+                var id = Guid.Parse(t.Identity.GetUserId());
+
+                using (var context = new ApplicationDbContext())
                 {
-                    ProductID = Guid.Parse(hfProductId.Value),
-                    UserId = id,
-                    ProductName = txtproductName.Text,
-                    Quantity = Convert.ToInt32(txtQuantity.Text),
-                    Status = "New",
-                    ShippingCost= Convert.ToInt32(txtQuantity.Text)*3.50,
-                    TotalCost = totalCost
-                });
-                context.SaveChanges();
-            };
+                    context.Cart.Add(new Cart
+                    {
+                        ProductID = Guid.Parse(hfProductId.Value),
+                        UserId = id,
+                        ProductName = txtproductName.Text,
+                        Quantity = Convert.ToInt32(txtQuantity.Text),
+                        Status = "New",
+                        ShippingCost = Convert.ToInt32(txtQuantity.Text) * 3.50,
+                        TotalCost = totalCost
+                    });
+                    context.SaveChanges();
+                };
+            }
+            catch (Exception)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please add the quantity of the product')", true); ;
+            }
+           
         }
 
         protected void OpenCart(object Source, EventArgs e)

@@ -11,12 +11,20 @@ namespace EC1.Lab
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!User.Identity.IsAuthenticated)
+            {
+                btnWelcome.Visible = false;
+            }
         }
 
         protected void btnform_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Pages/Account/Register.aspx");
+        }
+
+        protected void btnWelcome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Pages/Welcome.aspx");
         }
     }
 }

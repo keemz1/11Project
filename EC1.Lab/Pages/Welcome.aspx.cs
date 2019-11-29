@@ -21,6 +21,11 @@ namespace EC1.Lab
             {
                 btnAddProduct.Visible = false;
                 btnaddUser.Visible = false;
+                btnEditUser.Visible = false;
+            }
+            if (authenticationManager.User.IsInRole("Admin"))
+            {
+                btnprod.Visible = false;
             }
         }
 
@@ -77,6 +82,12 @@ namespace EC1.Lab
         protected void btnAddProduct_Click(object sender, EventArgs e)
         {
             Response.Redirect("/Pages/AdminStuff/AddProducts.aspx");
+        }
+
+
+        protected void btnEditUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("/Pages/AdminStuff/EditUser.aspx");
         }
     }
 }

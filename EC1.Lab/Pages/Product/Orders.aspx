@@ -14,4 +14,9 @@
             <AWebControl:WebControl ID="ListView" runat="server" OnCommand="Item_Selected" />
         </div>
     </div>
+    <div class="pb-3 pt-2">
+        <asp:Button CssClass="btn btn-light btn-rounded btn-outline-success"
+            ID="btnGoToCart" runat="server" Text="Back to Cart"
+            OnClick="btnGoToCart_Click" />
+    </div>
 </asp:Content>

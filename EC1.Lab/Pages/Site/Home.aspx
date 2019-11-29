@@ -65,5 +65,10 @@
             <p>Not a Member? Register Today!</p>
             <asp:Button CssClass="btn btn-outline-dark btn-light btn-rounded" ID="btnform" runat="server" Text="Go to Registration Form" OnClick="btnform_Click" />
         </div>
+        <div class="pb-3 pt-2">
+            <asp:Button CssClass="btn btn-light btn-rounded btn-outline-primary"
+                ID="btnWelcome" runat="server" Text="Go to Welcome"
+                OnClick="btnWelcome_Click" />
+        </div>
     </div>
 </asp:Content>

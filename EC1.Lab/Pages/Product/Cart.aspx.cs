@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.Entity;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Linq;
@@ -71,8 +72,9 @@ namespace EC1.Lab
 
             using (var context = new ApplicationDbContext())
             {
-                var item = context.Cart.Where(x => x.ProductID == pid).ToList().First();
-                context.Cart.Remove(item);
+                var item = context.Cart.Where(x => x.ProductID == pid).ToList().FirstOrDefault();
+                context.Entry(item).State = EntityState.Deleted;
+                //context.Cart.Remove(item);
                 context.SaveChanges();
             };
         }
@@ -145,7 +147,7 @@ namespace EC1.Lab
 
         protected void btnOrdersPage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Pages/Product/Orders.aspx");
+            Response.Redirect("/Pages/Product/Orders.aspx");
         }
     }
 }

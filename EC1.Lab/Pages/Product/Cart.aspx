@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContentPlaceHolder" runat="server">
-    <div class="align-items-center container-fluid">
+    <div class="align-items-center container-fluid" style="min-height: 100%">
         <h1>Cart</h1>
         <br />
         <br />
@@ -32,28 +32,27 @@
                             <asp:BoundField DataField="TotalCost" HeaderText="TotalCost" SortExpression="TotalCost" />
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <input type="button" value="Save Item" ID="btnProductSave" runat="server"
-                                        Text="Save Item" Title="This item will be saved for later"
-                                        class="rounded btn btn-light btn-light btn-outline-dark" 
+                                    <input type="button" value="Save Item" id="btnProductSave" runat="server"
+                                        text="Save Item" title="This item will be saved for later"
+                                        class="rounded btn btn-light btn-light btn-outline-dark"
                                         onserverclick="btnSaveItem" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
-                                    <input type="button" value="Put On Order List" ID="btnProdPurchase" runat="server"
-                                        Text="Put On Order List" Title="This item will put the item up for purchase"
+                                    <input type="button" value="Put On Order List" id="btnProdPurchase" runat="server"
+                                        text="Put On Order List" title="This item will put the item up for purchase"
                                         class="rounded btn btn-light btn-outline-primary"
-                                        onserverclick="btnStoreItem"/>
+                                        onserverclick="btnStoreItem" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <button type="button" class="alert-target btn btn-outline-success rounded"
-                                        title="Order all items from cart" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
+                                        title="Order all items from cart"
                                         style="margin: auto"
                                         runat="server"
-                                        onServerClick="btnBuy">
+                                        onserverclick="btnBuy">
                                         <i class="fa fa-shopping-cart fa-lg"
                                             aria-hidden="true"></i>
                                     </button>
@@ -62,11 +61,10 @@
                             <asp:TemplateField>
                                 <ItemTemplate>
                                     <button type="button" class="alert-target btn btn-outline-danger rounded"
-                                        title="Order all items from cart" data-toggle="modal"
-                                        data-target="#exampleModalCenter"
+                                        title="Remove items from cart"
                                         style="margin: auto"
                                         runat="server"
-                                        onServerClick="btnBuy">
+                                        onserverclick="btnRemove">
                                         <i class="fa fa-shopping-cart fa-lg"
                                             aria-hidden="true"></i>
                                     </button>
@@ -74,12 +72,16 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server"></asp:SqlDataSource>
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server">
+                        <UpdateParameters>
+                            <asp:Parameter Name="Quantity" Type="Int32" />
+                        </UpdateParameters>
+                    </asp:SqlDataSource>
                 </div>
                 <div class="pb-3">
                     <div class="row" style="margin: auto">
                         <button type="button" class="btn btn-outline-light rounded"
-                            title="Get All Saved Items" runat="server" onServerClick="btnGetSavedItems"
+                            title="Get All Saved Items" runat="server" onserverclick="btnGetSavedItems"
                             style="margin: auto">
                             <i class="fa fa-cart-arrow-down fa-lg"
                                 aria-hidden="true"></i>
@@ -90,21 +92,10 @@
         </div>
 
         <div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Confirm Purchase Action:</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div>
-                            <asp:Button ID="btnOrdersPage" runat="server" Text="See Your Orders" OnClick="btnOrdersPage_Click"/>
-                        </div>
-                    </div>
-                </div>
+            <div>
+                <asp:Button ID="btnOrdersPage" runat="server"
+                    Text="See Your Orders" OnClick="btnOrdersPage_Click" 
+                    CssClass="btn btn-outline-light rounded"/>
             </div>
         </div>
     </div>

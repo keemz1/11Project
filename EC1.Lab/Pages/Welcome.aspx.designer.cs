@@ -15,15 +15,6 @@ namespace EC1.Lab
     {
 
         /// <summary>
-        /// btnregister control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnregister;
-
-        /// <summary>
         /// btnaddUser control.
         /// </summary>
         /// <remarks>
@@ -49,5 +40,14 @@ namespace EC1.Lab
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnprod;
+
+        /// <summary>
+        /// btnEditUser control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEditUser;
     }
 }

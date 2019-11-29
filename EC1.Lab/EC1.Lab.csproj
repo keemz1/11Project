@@ -425,6 +425,9 @@
     <Content Include="Images\book2.jpg" />
     <Content Include="Images\book3.png" />
     <Content Include="Images\book4.jpg" />
+    <Content Include="Images\book5.jpg" />
+    <Content Include="Images\book6.jpg" />
+    <Content Include="Images\book7.jpg" />
     <Content Include="Images\carouselhome\c1.jpg" />
     <Content Include="Images\carouselhome\c2.jpg" />
     <Content Include="Images\carouselhome\c3.png" />
@@ -433,16 +436,14 @@
     <Content Include="Images\carouselhome\p1.jpg" />
     <Content Include="Images\carouselhome\p2.jpg" />
     <Content Include="Images\carouselhome\p3.jpg" />
-    <Content Include="Images\carousel\phone3.jpg" />
-    <Content Include="Images\carousel\phone4.jpg" />
-    <Content Include="Images\carousel\shoes3.jpg" />
-    <Content Include="Images\carousel\tvset.jpg" />
-    <Content Include="Images\carousel\xbox1.jpg" />
-    <Content Include="Images\carousel\xbox2.jpg" />
+    <Content Include="Images\carousel\w1.jpg" />
+    <Content Include="Images\carousel\w2.jpg" />
+    <Content Include="Images\carousel\w3.jpg" />
     <Content Include="Logo\logobook.jpg" />
     <Content Include="Pages\Account\LogOut.aspx" />
     <Content Include="Pages\AdminStuff\AddProducts.aspx" />
     <Content Include="Pages\AdminStuff\AddUser.aspx" />
+    <Content Include="Pages\AdminStuff\EditUser.aspx" />
     <Content Include="Pages\Product\Orders.aspx" />
     <Content Include="Pages\Product\Sub-Pages\CartItems.ascx" />
     <Content Include="Pages\Product\Sub-Pages\GridViewControl.ascx" />
@@ -497,6 +498,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Styles\animate.css" />
     <Content Include="Styles\Style.css" />
     <Content Include="Pages\Welcome.aspx" />
     <Content Include="Scripts\esm\popper.min.js.map" />
@@ -588,6 +590,13 @@
     </Compile>
     <Compile Include="Pages\AdminStuff\AddUser.aspx.designer.cs">
       <DependentUpon>AddUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\AdminStuff\EditUser.aspx.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AdminStuff\EditUser.aspx.designer.cs">
+      <DependentUpon>EditUser.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.Master.cs">
       <DependentUpon>Login.Master</DependentUpon>

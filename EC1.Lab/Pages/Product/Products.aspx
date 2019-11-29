@@ -9,11 +9,11 @@
             margin-bottom: 10px;
         }
 
-       .card-item {
+        .card-item {
             margin-bottom: 15px;
         }
 
-       .card {
+        .card {
             overflow: hidden;
         }
     </style>
@@ -27,10 +27,11 @@
             <div class="card-header row">
                 <div class="col-3"></div>
                     <div class="page-title col text-left" >
-                        <h1 style="color:black;">Products</h1>
+                        <h1 style="color:black;">Books</h1>
                     </div>
                     <div class="col-3 text-right">
-                        <button type="button" class="btn btn-light" title="View item(s) in cart" runat=server onServerClick="OpenCart">
+                        <button type="button" class="btn btn-light" title="View item(s) in cart"
+                            runat=server onServerClick="OpenCart">
                             <i class="fa fa-shopping-cart fa-lg" aria-hidden="true"></i>
                             <span class="badge badge-light">
                                 <asp:Label ID="lblCartCount" runat="server" Text="0"></asp:Label>
@@ -91,11 +92,13 @@
                     <div class="card-item col-md-8">
                             <div class="card">
                                 <div class="card-header">
-                                    <button id="toggleViewBtn" class="form-control col-md-4 btn btn-default btn-dark">View Products</button>
-                                    <%--<input id="toggleViewBtn" type="checkbox" data-toggle="toggle" data-on="Grid View" data-off="List View">--%>
+                                    <%--<button id="toggleViewBtn" class="form-control col-md-4 btn btn-default btn-dark">View Products</button>--%>
+                                <p style="font-weight:600">
+                                    Book List
+                                </p>
                                 </div>
                                 <div class="card-body">
-                                    <div class="grid container" style="display: none;overflow-x: auto;white-space: nowrap;">
+                                    <div class="grid container" overflow-x: auto;white-space: nowrap;">
                                         <GWebControl:WebControl ID="Grid" class="table table-bordered" runat="server" OnCommand="Item_Selected" />
                                     </div>
                                     <div class="product-grid">
@@ -443,79 +446,79 @@
 
 
 
-        //$(document).ready(function () { 
-        var isGrid = false;
-        var count = 1;
-        //var btn = document.getElementById('toggleViewBtn');
+        $(document).ready(function () {
+            var isGrid = false;
+            var count = 1;
+            var btn = document.getElementById('toggleViewBtn');
 
-        var sessionMode = sessionStorage.getItem('mode') || 'grid';
-        var sessionIsGrid = sessionMode === 'grid';
-        isGrid = !sessionIsGrid;
-        toggleView(false);
+            var sessionMode = sessionStorage.getItem('mode') || 'grid';
+            var sessionIsGrid = sessionMode === 'grid';
+            isGrid = !sessionIsGrid;
+            toggleView(false);
 
-        function toggleView(isAnimated = true) {
+            function toggleView(isAnimated = true) {
 
-            var animDuration = isAnimated ? 300 : 0;
-            if (isGrid) {
-                this.isGrid = false;
-                $('.grid').fadeOut(animDuration, function () { $('.product-grid').fadeIn(animDuration); });
-                document.getElementById('toggleViewBtn').value = "View Products Page";
-            } else {
-                this.isGrid = true;
-                $('.product-grid').fadeOut(animDuration, function () { $('.grid').fadeIn(animDuration); });
-                document.getElementById('toggleViewBtn').value = "View Products Page (GridView)";
-            }
-            sessionStorage.setItem('mode', isGrid ? 'grid' : 'list');
-        }
-
-        $('#toggleViewBtn').click(function (e) {
-            e.preventDefault();
-            toggleView();
-        });
-
-        //function to remove query params from a URL
-        function removeURLParameter(url, parameter) {
-            //better to use l.search if you have a location/link object
-            var urlparts = url.split('?');
-            if (urlparts.length >= 2) {
-
-                var prefix = encodeURIComponent(parameter) + '=';
-                var pars = urlparts[1].split(/[&;]/g);
-
-                //reverse iteration as may be destructive
-                for (var i = pars.length; i-- > 0;) {
-                    //idiom for string.startsWith
-                    if (pars[i].lastIndexOf(prefix, 0) !== -1) {
-                        pars.splice(i, 1);
-                    }
-                }
-
-                url = urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
-                return url;
-            } else {
-                return url;
-            }
-        }
-
-        function insertParam(key, value) {
-            if (history.pushState) {
-                // var newurl = window.location.protocol + "//" + window.location.host + search.pathname + '?myNewUrlQuery=1';
-                var currentUrl = window.location.href;
-                //remove any param for the same key
-                var currentUrl = removeURLParameter(currentUrl, key);
-
-                //figure out if we need to add the param with a ? or a &
-                var queryStart;
-                if (currentUrl.indexOf('?') !== -1) {
-                    queryStart = '&';
+                var animDuration = isAnimated ? 300 : 0;
+                if (isGrid) {
+                    this.isGrid = false;
+                    $('.grid').fadeOut(animDuration, function () { $('.product-grid').fadeIn(animDuration); });
+                    document.getElementById('toggleViewBtn').value = "View Products Page";
                 } else {
-                    queryStart = '?';
+                    this.isGrid = true;
+                    $('.product-grid').fadeOut(animDuration, function () { $('.grid').fadeIn(animDuration); });
+                    document.getElementById('toggleViewBtn').value = "View Products Page (GridView)";
                 }
-
-                var newurl = currentUrl + queryStart + key + '=' + value
-                window.history.pushState({ path: newurl }, '', newurl);
+                sessionStorage.setItem('mode', isGrid ? 'grid' : 'list');
             }
-        }
+
+            $('#toggleViewBtn').click(function (e) {
+                e.preventDefault();
+                toggleView();
+            });
+
+            //function to remove query params from a URL
+            function removeURLParameter(url, parameter) {
+                //better to use l.search if you have a location/link object
+                var urlparts = url.split('?');
+                if (urlparts.length >= 2) {
+
+                    var prefix = encodeURIComponent(parameter) + '=';
+                    var pars = urlparts[1].split(/[&;]/g);
+
+                    //reverse iteration as may be destructive
+                    for (var i = pars.length; i-- > 0;) {
+                        //idiom for string.startsWith
+                        if (pars[i].lastIndexOf(prefix, 0) !== -1) {
+                            pars.splice(i, 1);
+                        }
+                    }
+
+                    url = urlparts[0] + (pars.length > 0 ? '?' + pars.join('&') : "");
+                    return url;
+                } else {
+                    return url;
+                }
+            }
+
+            function insertParam(key, value) {
+                if (history.pushState) {
+                    // var newurl = window.location.protocol + "//" + window.location.host + search.pathname + '?myNewUrlQuery=1';
+                    var currentUrl = window.location.href;
+                    //remove any param for the same key
+                    var currentUrl = removeURLParameter(currentUrl, key);
+
+                    //figure out if we need to add the param with a ? or a &
+                    var queryStart;
+                    if (currentUrl.indexOf('?') !== -1) {
+                        queryStart = '&';
+                    } else {
+                        queryStart = '?';
+                    }
+
+                    var newurl = currentUrl + queryStart + key + '=' + value
+                    window.history.pushState({ path: newurl }, '', newurl);
+                }
+            }
             //});
     </script>
 </asp:Content>

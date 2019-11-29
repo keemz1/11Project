@@ -10,9 +10,9 @@
         <div class="" style="width: 50%; margin: 0 auto;">
             <br />
             <br />
+            <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
+            <br />
             <div class="form-group row">
-                <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
-                <br />
                 <asp:Label ID="lblemail" runat="server" class="col-sm-4 col-form-label no-wrap" Text="Email Address"></asp:Label>
 
                 <div class="col-4">
@@ -37,11 +37,12 @@
             </div>
             <p class="pb-2 pt-4" style="color: black">
                 Have'nt Signed Up?
+           
             </p>
             <div style="margin: auto">
                 <asp:Button ID="btnRegister" runat="server" Text="Register Now"
-                    CssClass="btn rounded btn-outline-success" 
-                    OnClick="btnRegister_Click"/>
+                    CssClass="btn rounded btn-outline-success"
+                    OnClick="btnRegister_Click" />
             </div>
         </div>
     </div>
