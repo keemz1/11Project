@@ -48,7 +48,7 @@ namespace EC1.Lab
             }
         }
 
-
+        //User Registered
         protected void btnRegister_Click(object sender, EventArgs e)
         {
             Response.Redirect("Pages/Account/Register.aspx");
